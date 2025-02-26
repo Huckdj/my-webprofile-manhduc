@@ -5,12 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
 export default function Home() {
-  const [currentlang, setCurrentLang] = useState(null)
+  const [currentlang, setCurrentLang] = useState<string | null>(null);
+
 
   useEffect(() => {
-    const current = localStorage.getItem('lang')
-    setCurrentLang(current);
-  },[])
+    if (typeof window !== "undefined") {
+      const curentlangs = localStorage.getItem("lang");
+      setCurrentLang(curentlangs);
+    }
+  }, []);
+  
 
   return (
     <div className=" container mx-auto font-sans">
