@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 "use client";
 import Link from "next/link";
@@ -127,20 +128,23 @@ export default function HeaderPage() {
       <div
         className={`fixed top-0 left-0 bottom-0 right-0 bg-[url(https://res.cloudinary.com/dumx42hqq/image/upload/v1740305190/5_aqp3ry.jpg)] bg-cover z-30 items-center
             flex h-full transition-all ease-in-out duration-300 ${
-              opentab ? "h-screen overflow-hidden" : "h-0"
+              opentab ? "h-screen" : "h-0"
             }`}
       >
         <div
           className={` grid grid-rows-5 gap-6  items-center h-[300px]  ${
-            opentab ? "h-full" : "opacity-0 pointer-events-none"
+            opentab ? "" : " opacity-0 pointer-events-none"
           }`}
         >
           {titleHeader.map((e, index) => (
             <Link
               href={e.pathname}
               key={e.id}
-              className={` hover:text-[#1465ff] uppercase whitespace-nowrap font-semibold text-xl px-6  ${
+              className={` hover:text-[#1465ff] uppercase whitespace-nowrap font-semibold text-xl px-6 transition-all ease-in-out duration-700 ${
                 pathname === e.pathname ? "text-[#1465ff]" : "text-gray-400"
+              }
+              ${
+                opentab ? "h-full" : "h-0"
               }`}
             >
               {currentlang === "vn" ? (
