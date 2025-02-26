@@ -17,10 +17,10 @@ export default function Home() {
   
 
   return (
-    <div className=" container mx-auto font-sans">
+    <div className=" container mx-auto font-sans text-black">
       <div className="mt-12 grid grid-cols-2 gap-1 ">
         <div className=" font-bold">
-          <span className=" p-2 border-2 text-3xl border-[#1465ff] rounded-md">
+          <span className=" p-2 border-2 text-3xl border-[#1465ff] rounded-md text-black">
             {currentlang === 'vn' || currentlang === '' ? <span>Xin Chào!</span> : <span>Hello!</span>}
           </span>
           <div className="text-6xl">

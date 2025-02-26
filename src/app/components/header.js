@@ -118,7 +118,7 @@ export default function HeaderPage() {
         <button onClick={handleupdatetab} className={`relative z-40 `}>
           <FontAwesomeIcon
             icon={opentab ? faX : faBars}
-            className={`w-[50px] text-2xl transition-all duration-300 ease-in-out ${
+            className={`w-[50px] text-2xl transition-all duration-300 ease-in-out text-black ${
               opentab ? "rotate-180" : ""
             }`}
           />
