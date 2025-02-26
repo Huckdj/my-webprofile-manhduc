@@ -3,8 +3,15 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from "react";
 export default function Home() {
-  const currentlang = localStorage.getItem('lang')
+  const [currentlang, setCurrentLang] = useState(null)
+
+  useEffect(() => {
+    const current = localStorage.getItem('lang')
+    setCurrentLang(current);
+  },[])
+
   return (
     <div className=" container mx-auto font-sans">
       <div className="mt-12 grid grid-cols-2 gap-1 ">
