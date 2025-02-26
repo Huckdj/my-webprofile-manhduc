@@ -1,4 +1,4 @@
-"use client"
+"use client";
 // import { Typewriter } from "react-simple-typewriter";
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
