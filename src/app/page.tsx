@@ -1,101 +1,57 @@
-import Image from "next/image";
-
+"use client"
+// import { Typewriter } from "react-simple-typewriter";
+import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 export default function Home() {
+  const currentlang = localStorage.getItem('lang')
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className=" container mx-auto font-sans">
+      <div className="mt-12 grid grid-cols-2 gap-1 ">
+        <div className=" font-bold">
+          <span className=" p-2 border-2 text-3xl border-[#1465ff] rounded-md">
+            {currentlang === 'vn' || currentlang === '' ? <span>Xin Chào!</span> : <span>Hello!</span>}
+          </span>
+          <div className="text-6xl">
+            <div className="mt-6 flex ">
+              <p>{currentlang === 'vn' || currentlang === '' ? "Tôi là" : "I'm"}&nbsp;</p>
+              <p className="text-[#1465ff]">
+                {currentlang === 'vn' || currentlang === '' ? 'Bùi Mạnh Đức' : 'Bui Manh Duc'}
+              </p>
+            </div>
+            <p className="">
+              Web Developer & &nbsp; BackEnd Developer
+            </p>
+          </div>
+          <div className="font-medium mt-6 text-gray-400 text-xl">
+            {currentlang === 'vn' || currentlang === '' ?
+              "Tôi là sinh viên trường Đại học Nguyễn Tất Thành tốt nghiệp cử nhân ngành Kỹ Thuật Phần Mềm." :
+              "I am a graduate of Nguyễn Tất Thành University with a Bachelor's degree in Software Engineering."
+            }
+          </div>
+          <div className="mt-6 text-xl">
+            <Link href="/about" className=" p-2 bg-[#1465ff] text-white rounded-full font-semibold font-sans px-6 py-3 mr-6 w-10 hover:bg-[#1465ff]/0 hover:text-black hover:border-2 hover:border-black transition-all delay-100 border-2 ease-in-out">
+            {currentlang === 'vn' || currentlang === '' ? "Tìm hiểu thêm" : "Learn more"}
+            </Link>
+            <a href="https://github.com/Huckdj" className="p-2 border-2 border-black rounded-full font-semibold font-sans px-10 min-w-14 py-3 transition-all delay-100 ease-in-out hover:bg-[#1465ff] hover:text-white hover:border-white" target="_blank">GitHub</a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="justify-center flex relative">
+          <img src='https://res.cloudinary.com/dumx42hqq/image/upload/v1740305954/IMG_3117-removebg-preview_epmpfg.png' className="rounded-b-full" />
+        </div>
+      </div>
+
+      {/* tab2 */}
+      <div className="lg:mt-20 mt-0">
+        <h1 className=" text-3xl font-bold text-[#1465ff] grid grid-cols-2 gap-0">
+          <span className="uppercase">
+            {currentlang === 'vn' || currentlang === '' ? " Kỹ năng " : "Skill" }
+          </span>
+          <span className="justify-end flex"><Link href='/projects' className="bg-[#1465ff] rounded-full p-2 text-white text-xl font-semibold items-center flex px-4">{currentlang === 'vn' || currentlang === '' ? " Dự án của tôi" : "My Project" }
+            <span className="items-center flex "><FontAwesomeIcon icon={faArrowRight} className='bg-white transition-all delay-150 ease-in-out hover:text-white hover:bg-[#1465ff] ml-2 border rounded-full p-1 text-black' /></span>
+          </Link></span>
+        </h1>
+      </div>
     </div>
   );
 }
