@@ -127,9 +127,9 @@ export default function HeaderPage() {
 
       {/* tab open min screen : 780px  */}
       <div
-        className={`fixed top-0 left-0 bottom-0 right-0 bg-[url(https://res.cloudinary.com/dumx42hqq/image/upload/v1740305190/5_aqp3ry.jpg)] bg-cover z-30 items-center
+        className={`fixed top-0 left-0 bottom-0 right-0  z-30 items-center
             flex h-full transition-all ease-in-out duration-300 ${
-              opentab ? "h-screen" : "h-0"
+              opentab ? "h-screen bg-[url(https://res.cloudinary.com/dumx42hqq/image/upload/v1740305190/5_aqp3ry.jpg)] bg-cover" : "h-0"
             }`}
       >
         <div
