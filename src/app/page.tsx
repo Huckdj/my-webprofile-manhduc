@@ -1,5 +1,8 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
-// import { Typewriter } from "react-simple-typewriter";
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
+
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -18,12 +21,12 @@ export default function Home() {
 
   return (
     <div className=" container mx-auto font-sans text-black">
-      <div className="mt-12 grid grid-cols-2 gap-1 ">
-        <div className=" font-bold">
-          <span className=" p-2 border-2 text-3xl border-[#1465ff] rounded-md text-black">
+      <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-1 ">
+        <div className=" intro-homepage font-bold duration-500">
+          <span className=" p-2 text-4xl  text-black">
             {currentlang === 'vn' || currentlang === '' ? <span>Xin Chào!</span> : <span>Hello!</span>}
           </span>
-          <div className="text-6xl">
+          <div className="lg:text-6xl p-2 text-xl">
             <div className="mt-6 flex ">
               <p>{currentlang === 'vn' || currentlang === '' ? "Tôi là" : "I'm"}&nbsp;</p>
               <p className="text-[#1465ff]">
@@ -31,7 +34,7 @@ export default function Home() {
               </p>
             </div>
             <p className="">
-              Web Developer & &nbsp; BackEnd Developer
+              Web Developer &&nbsp;BackEnd Developer
             </p>
           </div>
           <div className="font-medium mt-6 text-gray-400 text-xl">
@@ -40,15 +43,15 @@ export default function Home() {
               "I am a graduate of Nguyễn Tất Thành University with a Bachelor's degree in Software Engineering."
             }
           </div>
-          <div className="mt-6 text-xl">
-            <Link href="/about" className=" p-2 bg-[#1465ff] text-white rounded-full font-semibold font-sans px-6 py-3 mr-6 w-10 hover:bg-[#1465ff]/0 hover:text-black hover:border-2 hover:border-black transition-all delay-100 border-2 ease-in-out">
-            {currentlang === 'vn' || currentlang === '' ? "Tìm hiểu thêm" : "Learn more"}
+          <div className="mt-6 text-xl grid grid-cols-2 gap-6 lg:px-12">
+            <Link href="/about" className=" p-2 bg-[#1465ff] justify-center flex text-white rounded-full font-semibold font-sans hover:bg-[#1465ff]/0 hover:text-black hover:border-2 hover:border-black transition-all delay-100 border-2 ease-in-out">
+              {currentlang === 'vn' || currentlang === '' ? "Tìm hiểu thêm" : "Learn more"}
             </Link>
-            <a href="https://github.com/Huckdj" className="p-2 border-2 border-black rounded-full font-semibold font-sans px-10 min-w-14 py-3 transition-all delay-100 ease-in-out hover:bg-[#1465ff] hover:text-white hover:border-white" target="_blank">GitHub</a>
+            <a href="https://github.com/Huckdj" className="p-2 border-2 justify-center flex border-black rounded-full font-semibold font-sans px-10 min-w-14 py-3 transition-all delay-100 ease-in-out hover:bg-[#1465ff] hover:text-white hover:border-white" target="_blank">GitHub</a>
           </div>
         </div>
-        <div className="justify-center flex relative">
-          <img src='https://res.cloudinary.com/dumx42hqq/image/upload/v1740305954/IMG_3117-removebg-preview_epmpfg.png' className="rounded-b-full" />
+        <div className="justify-center hidden relative lg:flex">
+          <img src='https://res.cloudinary.com/dumx42hqq/image/upload/v1740305954/IMG_3117-removebg-preview_epmpfg.png' className="lg rounded-b-full" alt="avatar"/>
         </div>
       </div>
 

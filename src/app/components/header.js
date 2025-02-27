@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
@@ -54,14 +55,16 @@ export default function HeaderPage() {
     }
   }, [opentab]);
   return (
-    <div>
-      <div className="hidden bg-white/75 border  rounded-full mx-auto container mt-6 p-4 lg:flex items-center justify-between px-10 font-sans">
+    <div className="text-black">
+      <div className="hidden bg-white/75 border rounded-full mx-auto container mt-6 p-4 lg:flex items-center justify-between px-10 font-sans">
         {/* Logo */}
         <div className="text-2xl font-bold text-white py-2 px-2 rounded-full">
-          <img
-            src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740054410/Screenshot_2025-02-20_191821-removebg-preview_ylvnge.png"
-            className="w-[170px]"
-          />
+          <a href="/" alt='logo '>
+            <img
+              src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740054410/Screenshot_2025-02-20_191821-removebg-preview_ylvnge.png"
+              className="w-[170px] block"
+            />
+          </a>
         </div>
 
         {/* Menu */}
@@ -127,26 +130,26 @@ export default function HeaderPage() {
 
       {/* tab open min screen : 780px  */}
       <div
-        className={`fixed top-0 left-0 bottom-0 right-0  z-30 items-center
+        className={`fixed top-0 left-0 bottom-0 right-0 lg:hidden  z-30 items-center
             flex h-full transition-all ease-in-out duration-300 ${
-              opentab ? "h-screen bg-[url(https://res.cloudinary.com/dumx42hqq/image/upload/v1740305190/5_aqp3ry.jpg)] bg-cover" : "h-0"
+              opentab
+                ? "h-screen bg-[url(https://res.cloudinary.com/dumx42hqq/image/upload/v1740305190/5_aqp3ry.jpg)] bg-cover"
+                : "h-0"
             }`}
       >
         <div
-          className={` grid grid-rows-5 gap-6  items-center h-[300px]  ${
+          className={` grid grid-rows-5 gap-6 items-center h-[300px]  ${
             opentab ? "" : " opacity-0 pointer-events-none"
           }`}
         >
           {titleHeader.map((e, index) => (
-            <Link
+            <a
               href={e.pathname}
               key={e.id}
               className={` hover:text-[#1465ff] uppercase whitespace-nowrap font-semibold text-xl px-6 transition-all ease-in-out duration-700 ${
                 pathname === e.pathname ? "text-[#1465ff]" : "text-gray-400"
               }
-              ${
-                opentab ? "h-full" : "h-0"
-              }`}
+              ${opentab ? "h-full" : "h-0"}`}
             >
               {currentlang === "vn" ? (
                 <span>
@@ -157,7 +160,7 @@ export default function HeaderPage() {
                   {index + 1}. {e.title2}
                 </span>
               )}
-            </Link>
+            </a>
           ))}
 
           {/* lang Button */}
@@ -175,7 +178,9 @@ export default function HeaderPage() {
               </span>
             </button>
           ) : (
-            <button className=" px-6  rounded-lg" onClick={handleChangeLang}>
+            <button className="flex px-6  space-x-2 rounded-lg" 
+            onClick={handleChangeLang}
+            >
               <span className="border justify-center border-gray-300 flex space-x-2">
                 <span>EN</span>{" "}
                 <img
