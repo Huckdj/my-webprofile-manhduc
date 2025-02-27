@@ -9,7 +9,12 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
 export default function Home() {
   const [currentlang, setCurrentLang] = useState<string | null>(null);
-
+  const linkimgskill = [
+    {id:1, Link:'https://res.cloudinary.com/dumx42hqq/image/upload/v1740628868/png-transparent-js-react-js-logo-react-react-native-logos-icon-thumbnail-removebg-preview_hilagc.png'},
+    {id:2, Link:'https://res.cloudinary.com/dumx42hqq/image/upload/v1740628854/1__bJ2z2NRfTncHAv5UjUxwA-removebg-preview_kjngo5.png'},
+    {id:3, Link:'https://res.cloudinary.com/dumx42hqq/image/upload/v1740628854/1__bJ2z2NRfTncHAv5UjUxwA-removebg-preview_kjngo5.png'},
+    {id:4, Link:'https://res.cloudinary.com/dumx42hqq/image/upload/v1740628854/1__bJ2z2NRfTncHAv5UjUxwA-removebg-preview_kjngo5.png'},
+  ]
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -67,6 +72,14 @@ export default function Home() {
             </span>
           </a>
         </h1>
+      </div>
+
+      <div className="lg:grid-cols-5 grid justify-center items-center lg:px-96 mt-6">
+          {linkimgskill.map((e,index) =>(
+            <span key={index}>
+              <img src={e.Link} className="w-20 "/>
+            </span>
+          ))}
       </div>
     </div>
   );
