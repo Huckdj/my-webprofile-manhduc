@@ -110,7 +110,7 @@ export default function HeaderPage() {
         )}
       </div>
 
-      <div className=" flex lg:hidden max-h-32 container justify-between mx-auto bg-white/75 border rounded-full p-3 mt-4">
+      <div className=" flex lg:hidden min-h-12 max-h-12 container justify-between mx-auto bg-white/75 border rounded-full p-3 mt-4">
         <img
           src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740054410/Screenshot_2025-02-20_191821-removebg-preview_ylvnge.png"
           className="w-28"
