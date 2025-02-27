@@ -133,8 +133,8 @@ export default function HeaderPage() {
         className={`fixed top-0 left-0 bottom-0 right-0 lg:hidden  z-30 items-center
             flex h-full transition-all ease-in-out duration-300 ${
               opentab
-                ? "h-screen bg-[url(https://res.cloudinary.com/dumx42hqq/image/upload/v1740305190/5_aqp3ry.jpg)] bg-cover"
-                : "h-0"
+                ? " h-screen bg-[url(https://res.cloudinary.com/dumx42hqq/image/upload/v1740305190/5_aqp3ry.jpg)] bg-cover"
+                : "pointer-events-none h-0 opacity-0"
             }`}
       >
         <div

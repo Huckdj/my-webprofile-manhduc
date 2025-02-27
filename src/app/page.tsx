@@ -43,7 +43,7 @@ export default function Home() {
               "I am a graduate of Nguyễn Tất Thành University with a Bachelor's degree in Software Engineering."
             }
           </div>
-          <div className="mt-6 text-xl grid grid-cols-2 gap-6 lg:px-12 lg:mt-0 mt-20">
+          <div className=" text-xl grid grid-cols-2 gap-6 lg:px-12 lg:mt-0 mt-20">
             <Link href="/about" className=" p-2 bg-[#1465ff] justify-center flex text-white rounded-full font-semibold font-sans hover:bg-[#1465ff]/0 hover:text-black hover:border-2 hover:border-black transition-all delay-100 border-2 ease-in-out">
               {currentlang === 'vn' || currentlang === '' ? "Tìm hiểu thêm" : "Learn more"}
             </Link>
@@ -61,11 +61,11 @@ export default function Home() {
           <span className="uppercase">
             {currentlang === 'vn' || currentlang === '' ? " Kỹ năng " : "Skill"}
           </span>
-          <span className="justify-end flex">
-            <Link href='/projects' className="bg-[#1465ff] rounded-full p-2 text-white text-lg lg:text-xl font-semibold items-center flex px-4">{currentlang === 'vn' || currentlang === '' ? " Dự án của tôi" : "My Project"}
+          <a className="justify-end flex" href='/projects'>
+            <span className="bg-[#1465ff] rounded-full p-2 text-white text-lg lg:text-xl font-semibold items-center flex px-4">{currentlang === 'vn' || currentlang === '' ? " Dự án của tôi" : "My Project"}
               <span className="items-center flex "><FontAwesomeIcon icon={faArrowRight} className='bg-white transition-all delay-150 ease-in-out hover:text-white hover:bg-[#1465ff] ml-2 border rounded-full p-1 text-black' /></span>
-            </Link>
-          </span>
+            </span>
+          </a>
         </h1>
       </div>
     </div>
