@@ -59,7 +59,7 @@ export default function HeaderPage() {
       <div className="hidden bg-white/75 border rounded-full mx-auto container mt-6 p-4 lg:flex items-center justify-between px-10 font-sans">
         {/* Logo */}
         <div className="text-2xl font-bold text-white py-2 px-2 rounded-full">
-          <a href="/" alt='logo '>
+          <a href="/" alt="logo ">
             <img
               src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740054410/Screenshot_2025-02-20_191821-removebg-preview_ylvnge.png"
               className="w-[170px] block"
@@ -114,10 +114,12 @@ export default function HeaderPage() {
       </div>
 
       <div className=" flex lg:hidden min-h-12 max-h-12 container justify-between mx-auto bg-white/75 border rounded-full p-3 mt-4">
-        <img
-          src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740054410/Screenshot_2025-02-20_191821-removebg-preview_ylvnge.png"
-          className="w-28"
-        />
+        <a href="/" alt="logo ">
+          <img
+            src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740054410/Screenshot_2025-02-20_191821-removebg-preview_ylvnge.png"
+            className="w-28"
+          />
+        </a>
         <button onClick={handleupdatetab} className={`relative z-40 `}>
           <FontAwesomeIcon
             icon={opentab ? faX : faBars}
@@ -178,8 +180,9 @@ export default function HeaderPage() {
               </span>
             </button>
           ) : (
-            <button className="flex px-6  space-x-2 rounded-lg" 
-            onClick={handleChangeLang}
+            <button
+              className="flex px-6  space-x-2 rounded-lg"
+              onClick={handleChangeLang}
             >
               <span className="border justify-center border-gray-300 flex space-x-2">
                 <span>EN</span>{" "}
