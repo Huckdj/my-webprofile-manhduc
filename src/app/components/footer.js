@@ -13,7 +13,7 @@ export default function FooterPage() {
   }, []);
 
   return (
-    <div className=" bg-white/80 lg:min-h-[00px] mt-60">
+    <div className=" bg-white/80 lg:min-h-[00px] mt-60 text-black">
       <div className="grid grid-cols-1 gap-3 pt-10 container mx-auto">
         <div className="justify-center grid">
           <span className="text-5xl lg:text-9xl font-mono text-center">

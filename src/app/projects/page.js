@@ -11,7 +11,7 @@ export default function ProjectPage() {
   }, []);
 
   return (
-    <div>
+    <div className="text-black">
       <div className="min-h-[200px] justify-center items-center flex bg-[#7ea2e4] text-white text-6xl font-mono">
         {currentlang === "vn" || currentlang === "" ? (
           <div>DỰ ÁN</div>
