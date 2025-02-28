@@ -12,6 +12,23 @@ import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 export default function HeaderPage() {
   const pathname = usePathname();
 
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const [currentlang, setCurrentlang] = useState("");
   useEffect(() => {
     const lang = localStorage.getItem("lang");
@@ -55,7 +72,7 @@ export default function HeaderPage() {
     }
   }, [opentab]);
   return (
-    <div className="text-black">
+    <div className={`text-black transition-all ease-in-out duration-900 z-50 ${isFixed ? 'fixed right-0 left-0' :''}`}>
       <div className="hidden bg-white/75 border rounded-full mx-auto container mt-6 p-4 lg:flex items-center justify-between px-10 font-sans">
         {/* Logo */}
         <div className="text-2xl font-bold text-white py-2 px-2 rounded-full">
