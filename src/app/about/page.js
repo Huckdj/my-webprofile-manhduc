@@ -80,7 +80,7 @@ export default function AboutPage() {
                 <li>
                   Link Github:{" "}
                   <a
-                    href="https://github.com/Huckdj/watchstore-reactjs-mysql"
+                    href="https://github.com/Huckdj/watchstore-reactjs-mysql-"
                     className="text-[#1465ff]"
                   >
                     Xem dự án
@@ -147,7 +147,16 @@ export default function AboutPage() {
             </ul>
           </p>
 
-          <h2 className="text-2xl font-bold">6. Mục tiêu nghề nghiệp</h2>
+          <h2 className="text-2xl font-bold">6. Kinh Nghiệm</h2>
+          <p className="text-lg p-4">
+            8-2024-12-2024 <br/>
+            <span className="p-4">
+              - Thực tập Backend C# ASP.Net Core Tại Tập Đoàn Đầu Tư Công Nghệ Nam
+              Long(NLT Group)
+            </span>
+          </p>
+
+          <h2 className="text-2xl font-bold">7. Mục tiêu nghề nghiệp</h2>
           <p className="text-lg p-4">
             Xây dựng sự nghiệp lâu dài trong lĩnh vực này, tích lũy thêm kinh
             nghiệm và thăng tiến hơn nữa trong lĩnh vực.
@@ -218,7 +227,7 @@ export default function AboutPage() {
                 <li>
                   GitHub Link:{" "}
                   <a
-                    href="https://github.com/Huckdj/watchstore-reactjs-mysql"
+                    href="https://github.com/Huckdj/watchstore-reactjs-mysql-"
                     className="text-[#1465ff]"
                   >
                     View Project
@@ -285,9 +294,18 @@ export default function AboutPage() {
             </ul>
           </p>
 
-          <h2 className="text-2xl font-bold">6. Career Goals</h2>
+          <h2 className="text-2xl font-bold">6. Experience</h2>
           <p className="text-lg p-4">
-            To build a long-term career in this field, gain more experience, and
+            08/2024 - 12/2024 <br/>
+            <span className="p-4">
+              - Backend Internship in C# ASP.Net Core at Nam Long Technology
+              Investment Group (NLT Group)
+            </span>
+          </p>
+
+          <h2 className="text-2xl font-bold">7. Career Goals</h2>
+          <p className="text-lg p-4">
+            - To build a long-term career in this field, gain more experience, and
             advance further in the industry.
           </p>
         </div>

@@ -72,7 +72,7 @@ export default function ProjectPage() {
                 NodeJS và MySQL
               </p>
               <a
-                href="https://github.com/Huckdj/watchstore-reactjs-mysql"
+                href="https://github.com/Huckdj/watchstore-reactjs-mysql-"
                 className="text-[#1465ff] block mt-2"
               >
                 Link SoucreCode
@@ -159,7 +159,7 @@ export default function ProjectPage() {
                 Luxury watch e-commerce website using ReactJS, NodeJS, and MySQL
               </p>
               <a
-                href="https://github.com/Huckdj/watchstore-reactjs-mysql"
+                href="https://github.com/Huckdj/watchstore-reactjs-mysql-"
                 className="text-[#1465ff] block mt-2"
               >
                 Source Code Link

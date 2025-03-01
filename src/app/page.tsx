@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
