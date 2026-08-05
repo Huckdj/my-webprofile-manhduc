@@ -16,7 +16,6 @@ const skillGroups = [
 
 const stats = [
   { value: "7+", vn: "Dự án hoàn thành", en: "Projects completed" },
-  { value: "3+", vn: "Năm lập trình", en: "Years coding" },
   { value: "10+", vn: "Công nghệ", en: "Technologies" },
   { value: "100%", vn: "Tinh thần học hỏi", en: "Growth mindset" },
 ];
