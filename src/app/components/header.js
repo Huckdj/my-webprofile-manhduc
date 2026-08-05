@@ -1,217 +1,106 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable jsx-a11y/alt-text */
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
-
-export default function HeaderPage() {
+import { faBars, faX, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+const nav = [
+  { vi: "Trang chủ", en: "Home", href: "/" },
+  { vi: "Giới thiệu", en: "About", href: "/about" },
+  { vi: "Dự án", en: "Projects", href: "/projects" },
+  { vi: "Liên hệ", en: "Contact", href: "/contact" },
+];
+export default function Header() {
   const pathname = usePathname();
-
-  const [isFixed, setIsFixed] = useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [lang, setLang] = useState("vn");
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    setLang(localStorage.getItem("lang") === "en" ? "en" : "vn");
+    const fn = () => setScrolled(scrollY > 20);
+    addEventListener("scroll", fn);
+    return () => removeEventListener("scroll", fn);
   }, []);
-
-  const [currentlang, setCurrentlang] = useState("");
   useEffect(() => {
-    const lang = localStorage.getItem("lang");
-    if (lang === "vn" || !lang) {
-      setCurrentlang("vn");
-    } else {
-      setCurrentlang("en");
-    }
-  }, [currentlang]);
-
-  const handleChangeLang = () => {
-    const lang = localStorage.getItem("lang");
-    if (lang === "vn" || !lang) {
-      window.location.reload();
-      localStorage.setItem("lang", "en");
-      setCurrentlang("en");
-    } else {
-      window.location.reload();
-      localStorage.setItem("lang", "vn");
-      setCurrentlang("vn");
-    }
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+  const toggleLang = () => {
+    const next = lang === "vn" ? "en" : "vn";
+    localStorage.setItem("lang", next);
+    setLang(next);
+    window.dispatchEvent(new Event("languagechange"));
   };
-  const titleHeader = [
-    { id: 1, titlevn: "trang chủ", title2: "Home", pathname: "/" },
-    { id: 2, titlevn: "giới thiệu", title2: "ABOUT", pathname: "/about" },
-    { id: 3, titlevn: "Dự án", title2: "project", pathname: "/projects" },
-    { id: 4, titlevn: "Liên hệ", title2: "Contact", pathname: "/contact" },
-  ];
-
-  const [opentab, setOpentab] = useState(false);
-
-  const handleupdatetab = () => {
-    setOpentab(!opentab);
-  };
-
-  useEffect(() => {
-    if (opentab) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-  }, [opentab]);
   return (
-    <div className={`text-black transition-all ease-in-out duration-900 z-50 ${isFixed ? 'fixed right-0 left-0' :''}`}>
-      <div className="hidden bg-white/75 border rounded-full mx-auto container mt-6 p-4 lg:flex items-center justify-between px-10 font-sans">
-        {/* Logo */}
-        <div className="text-2xl font-bold text-white py-2 px-2 rounded-full">
-          <a href="/" alt="logo ">
-            <img
-              src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740054410/Screenshot_2025-02-20_191821-removebg-preview_ylvnge.png"
-              className="w-[170px] block"
-            />
-          </a>
-        </div>
-
-        {/* Menu */}
-        <nav className="grid grid-cols-4 gap-0 font-semibold text-md">
-          {titleHeader.map((e) => (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 px-4 transition-all ${scrolled ? "py-3" : "py-5"}`}
+    >
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between rounded-2xl border px-4 py-3 transition-all sm:px-5 ${scrolled ? "border-white/10 bg-[#070b16]/85 shadow-2xl shadow-black/30 backdrop-blur-xl" : "border-transparent bg-transparent"}`}
+      >
+        <Link
+          href="/"
+          className="flex items-center gap-3"
+          aria-label="Trang chủ"
+        >
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 font-mono text-sm font-black text-slate-950">
+            MD
+          </span>
+          <span className="hidden font-semibold text-white sm:block uppercase">
+            Mạnh Đức
+          </span>
+        </Link>
+        <nav className="hidden items-center gap-1 md:flex">
+          {nav.map((n) => (
             <Link
-              href={e.pathname}
-              key={e.id}
-              className={`group hover:text-[#1465ff] justify-center px-4 flex uppercase relative ${
-                pathname === e.pathname ? "text-[#1465ff]" : "text-gray-400"
-              }`}
+              key={n.href}
+              href={n.href}
+              className={`rounded-lg px-4 py-2 text-sm transition ${pathname === n.href ? "bg-white/[.06] text-white" : "text-slate-400 hover:text-white"}`}
             >
-              {currentlang === "vn" ? (
-                <span>{e.titlevn}</span>
-              ) : (
-                <span>{e.title2}</span>
-              )}
-              <span className="absolute bottom-0 left-0 h-0.5 bg-blue-500 w-0 group-hover:w-full transition-all duration-300"></span>
+              {lang === "vn" ? n.vi : n.en}
             </Link>
           ))}
         </nav>
-
-        {/* lang Button */}
-        {currentlang === "vn" ? (
+        <div className="hidden items-center gap-3 md:flex">
           <button
-            className="flex justify-center space-x-2 border p-1 rounded-lg"
-            onClick={handleChangeLang}
+            onClick={toggleLang}
+            className="rounded-lg border border-white/10 px-3 py-2 text-xs font-bold text-slate-300"
           >
-            <span>VN</span>{" "}
-            <img
-              src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740368042/70a1b149-eb2d-4630-b1a9-b58002041aa2.png"
-              className="w-6"
-            />
+            {lang === "vn" ? "VI" : "EN"}
           </button>
-        ) : (
-          <button
-            className="flex justify-center space-x-2 border p-1 rounded-lg"
-            onClick={handleChangeLang}
-          >
-            <span>EN</span>{" "}
-            <img
-              src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740368747/7aaeb7dd-b220-4d60-9b48-6df2ecd13223.png"
-              className="w-6"
-            />
-          </button>
-        )}
-      </div>
-
-      <div className=" flex lg:hidden min-h-12 max-h-12 container justify-between mx-auto bg-white/75 border rounded-full p-3 mt-4">
-        <a href="/" alt="logo ">
-          <img
-            src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740054410/Screenshot_2025-02-20_191821-removebg-preview_ylvnge.png"
-            className="w-28"
-          />
-        </a>
-        <button onClick={handleupdatetab} className={`relative z-40 `}>
-          <FontAwesomeIcon
-            icon={opentab ? faX : faBars}
-            className={`w-[50px] text-2xl transition-all duration-300 ease-in-out text-black ${
-              opentab ? "rotate-180" : ""
-            }`}
-          />
+          <Link href="/contact" className="primary-btn !min-h-0 !px-4 !py-2">
+            {lang === "vn" ? "Trao đổi" : "Let’s talk"}
+            <FontAwesomeIcon icon={faArrowRight} />
+          </Link>
+        </div>
+        <button
+          onClick={() => setOpen(!open)}
+          className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-white md:hidden"
+          aria-expanded={open}
+          aria-label="Menu"
+        >
+          <FontAwesomeIcon icon={open ? faX : faBars} />
         </button>
       </div>
-
-      {/* tab open min screen : 780px  */}
-      <div
-        className={`fixed top-0 left-0 bottom-0 right-0 lg:hidden  z-30 items-center
-            flex h-full transition-all ease-in-out duration-300 ${
-              opentab
-                ? " h-screen bg-[url(https://res.cloudinary.com/dumx42hqq/image/upload/v1740305190/5_aqp3ry.jpg)] bg-cover"
-                : "pointer-events-none h-0 opacity-0"
-            }`}
-      >
-        <div
-          className={` grid grid-rows-5 gap-6 items-center h-[300px]  ${
-            opentab ? "" : " opacity-0 pointer-events-none"
-          }`}
-        >
-          {titleHeader.map((e, index) => (
-            <a
-              href={e.pathname}
-              key={e.id}
-              className={` hover:text-[#1465ff] uppercase whitespace-nowrap font-semibold text-xl px-6 transition-all ease-in-out duration-700 ${
-                pathname === e.pathname ? "text-[#1465ff]" : "text-gray-400"
-              }
-              ${opentab ? "h-full" : "h-0"}`}
+      {open && (
+        <div className="fixed inset-0 -z-10 flex flex-col items-center justify-center gap-7 bg-[#050814]/95 backdrop-blur-xl md:hidden">
+          {nav.map((n) => (
+            <Link
+              key={n.href}
+              href={n.href}
+              onClick={() => setOpen(false)}
+              className={`text-3xl font-semibold ${pathname === n.href ? "text-cyan-300" : "text-slate-300"}`}
             >
-              {currentlang === "vn" ? (
-                <span>
-                  {index + 1}. {e.titlevn}
-                </span>
-              ) : (
-                <span>
-                  {index + 1}. {e.title2}
-                </span>
-              )}
-            </a>
+              {lang === "vn" ? n.vi : n.en}
+            </Link>
           ))}
-
-          {/* lang Button */}
-          {currentlang === "vn" ? (
-            <button
-              className="flex px-6  space-x-2 rounded-lg"
-              onClick={handleChangeLang}
-            >
-              <span className="border justify-center border-gray-300 flex space-x-2">
-                <span>VN</span>{" "}
-                <img
-                  src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740368042/70a1b149-eb2d-4630-b1a9-b58002041aa2.png"
-                  className="w-6"
-                />
-              </span>
-            </button>
-          ) : (
-            <button
-              className="flex px-6  space-x-2 rounded-lg"
-              onClick={handleChangeLang}
-            >
-              <span className="border justify-center border-gray-300 flex space-x-2">
-                <span>EN</span>{" "}
-                <img
-                  src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740368747/7aaeb7dd-b220-4d60-9b48-6df2ecd13223.png"
-                  className="w-6"
-                />
-              </span>
-            </button>
-          )}
+          <button onClick={toggleLang} className="secondary-btn mt-4">
+            {lang === "vn" ? "English" : "Tiếng Việt"}
+          </button>
         </div>
-      </div>
-    </div>
+      )}
+    </header>
   );
 }

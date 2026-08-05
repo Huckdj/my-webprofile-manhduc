@@ -1,124 +1,101 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable jsx-a11y/alt-text */
 
 import Link from "next/link";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faCode, faDownload, faEnvelope, faLocationDot, faCheck, faBriefcase, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import { useLang } from "./hooks/useLang";
+import ProjectCard from "./components/ProjectCard";
+import CodeWindow from "./components/CodeWindow";
+import { projects } from "@/data/projects";
+
+const skillGroups = [
+  { title: "Frontend", icon: "FE", skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
+  { title: "Backend", icon: "BE", skills: ["Node.js", "ASP.NET Core", "C#", "REST API"] },
+  { title: "Database & Tools", icon: "DB", skills: ["SQL Server", "MySQL", "Git", "Figma"] },
+];
+
+const stats = [
+  { value: "7+", vn: "Dự án hoàn thành", en: "Projects completed" },
+  { value: "3+", vn: "Năm lập trình", en: "Years coding" },
+  { value: "10+", vn: "Công nghệ", en: "Technologies" },
+  { value: "100%", vn: "Tinh thần học hỏi", en: "Growth mindset" },
+];
 
 export default function Home() {
-  const [currentlang, setCurrentLang] = useState<string | null>(null);
-
-  const linkimgskill = [
-    { id: 1, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740628868/png-transparent-js-react-js-logo-react-react-native-logos-icon-thumbnail-removebg-preview_hilagc.png' },
-    { id: 7, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740713717/Node.js_logo.svg_vyecnt.png' },
-    { id: 2, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740628854/1__bJ2z2NRfTncHAv5UjUxwA-removebg-preview_kjngo5.png' },
-    { id: 3, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740629197/javascript_logo_ggghxt.png' },
-    { id: 4, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740713516/Npm-logo.svg_x0c0af.png' },
-    { id: 5, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740713541/NET_Core_Logo.svg_t9ufa6.png' },
-    { id: 6, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740713635/5968364_dvi4xa.png' },
-    { id: 8, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740713693/mysql_mm9l90.svg' },
-    { id: 9, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740714024/Tailwind_CSS_Logo.svg_eduoov.png' },
-    { id: 10, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740714138/1175208_rbgxyu.webp' },
-    { id: 11, Link: 'https://res.cloudinary.com/dumx42hqq/image/upload/v1740714223/css3_ekltr4.png' },
-  ]
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const curentlangs = localStorage.getItem("lang");
-      setCurrentLang(curentlangs);
-    }
-  }, []);
-
+  const { isVn } = useLang();
+  const featuredProjects = projects.filter((project) => project.featured).slice(0, 3);
 
   return (
-    <div className=" container mx-auto font-sans text-black p-2">
-      <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-6 ">
-        <div className=" intro-homepage font-bold duration-500">
-          <span className=" text-4xl  text-black">
-            {currentlang === 'vn' || currentlang === '' ? <span>Xin Chào!</span> : <span>Hello!</span>}
-          </span>
-          <div className="lg:text-6xl text-xl">
-            <div className="mt-6 flex ">
-              <p>{currentlang === 'vn' || currentlang === '' ? "Tôi là" : "I'm"}&nbsp;</p>
-              <p className="text-[#1465ff]">
-                {currentlang === 'vn' || currentlang === '' ? 'Bùi Mạnh Đức' : 'Bui Manh Duc'}
-              </p>
+    <div className="overflow-hidden">
+      <section className="relative flex min-h-[92vh] items-center px-4 pb-20 pt-32">
+        <div className="hero-grid absolute inset-0 opacity-40" aria-hidden="true" />
+        <div className="blob left-[8%] top-24 h-72 w-72 bg-blue-600/25" aria-hidden="true" />
+        <div className="blob right-[5%] top-48 h-80 w-80 bg-cyan-500/15 [animation-delay:-3s]" aria-hidden="true" />
+        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-16 lg:grid-cols-[1.05fr_.95fr]">
+          <div className="reveal">
+            <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-emerald-400/20 bg-emerald-400/[.07] px-4 py-2 text-sm text-emerald-300">
+              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" /><span className="relative h-2 w-2 rounded-full bg-emerald-400" /></span>
+              {isVn ? "Sẵn sàng cho cơ hội mới" : "Available for new opportunities"}
             </div>
-            <p className="">
-              Web Developer &&nbsp;BackEnd Developer
+            <p className="mb-4 font-mono text-sm font-medium uppercase tracking-[.22em] text-cyan-300">{isVn ? "Xin chào, tôi là" : "Hello, I am"}</p>
+            <h1 className="max-w-3xl text-5xl font-bold leading-[1.05] tracking-[-.045em] text-white sm:text-6xl lg:text-7xl">
+              Bùi Mạnh Đức<span className="text-blue-400">.</span>
+            </h1>
+            <h2 className="mt-5 text-2xl font-semibold text-slate-300 sm:text-3xl">
+              {isVn ? "Tôi xây dựng " : "I build "}<span className="gradient-text">{isVn ? "sản phẩm số hữu ích." : "useful digital products."}</span>
+            </h2>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
+              {isVn ? "Full-stack Developer tập trung vào trải nghiệm người dùng, kiến trúc sạch và hiệu năng. Tôi biến những bài toán thực tế thành sản phẩm web trực quan, nhanh và dễ mở rộng." : "A full-stack developer focused on user experience, clean architecture and performance. I turn real-world problems into intuitive, fast and scalable web products."}
             </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href="/projects" className="magnetic-btn primary-btn">{isVn ? "Xem dự án" : "View projects"}<FontAwesomeIcon icon={faArrowRight} /></Link>
+              <Link href="/contact" className="magnetic-btn secondary-btn"><FontAwesomeIcon icon={faEnvelope} />{isVn ? "Liên hệ tôi" : "Contact me"}</Link>
+            </div>
+            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-500">
+              <span className="flex items-center gap-2"><FontAwesomeIcon icon={faLocationDot} className="text-blue-400" />TP. Hồ Chí Minh, Việt Nam</span>
+              <a href="https://github.com/Huckdj" target="_blank" rel="noreferrer" className="social-link" aria-label="GitHub"><FontAwesomeIcon icon={faCode} /></a>
+              <a href="mailto:manhduc132003@gmail.com" className="social-link" aria-label="Email"><FontAwesomeIcon icon={faEnvelope} /></a>
+            </div>
           </div>
-          <div className="font-medium mt-6 text-gray-500 lg:text-gray-400 text-xl">
-            {currentlang === 'vn' || currentlang === '' ?
-              "Tôi là sinh viên trường Đại học Nguyễn Tất Thành tốt nghiệp cử nhân ngành Kỹ Thuật Phần Mềm." :
-              "I am a graduate of Nguyễn Tất Thành University with a Bachelor's degree in Software Engineering."
-            }
-          </div>
-          <div className=" text-xl grid grid-cols-2 gap-6 lg:px-12 lg:mt-5 mt-20">
-            <Link href="/about" className=" p-2 bg-[#1465ff] justify-center flex text-white rounded-full font-semibold font-sans hover:bg-[#1465ff]/0 hover:text-black hover:border-2 hover:border-black transition-all delay-100 border-2 ease-in-out">
-              {currentlang === 'vn' || currentlang === '' ? "Tìm hiểu thêm" : "Learn more"}
-            </Link>
-            <a href="https://github.com/Huckdj" className="p-2 border-2 justify-center flex border-black rounded-full font-semibold font-sans px-10 min-w-14 py-3 transition-all delay-100 ease-in-out hover:bg-[#1465ff] hover:text-white hover:border-white" target="_blank">GitHub</a>
-          </div>
+          <div className="reveal [animation-delay:180ms]"><CodeWindow /></div>
         </div>
-        <div className="justify-center flex relative lg:mt-0 mt-20">
-          <img src='https://res.cloudinary.com/dumx42hqq/image/upload/v1740305954/IMG_3117-removebg-preview_epmpfg.png' className="lg rounded-b-full z-10" alt="avatar" />
-          <div className="absolute lg:left-1/4 left-0 top-1/3 font-extralight opacity-20">
-            <p className="ml-4 whitespace-nowrap"><span>{"console.log('hello world')"}</span> <span className="ml-15 text-3xl">{"<HTML/>"}</span></p>
-            <p className="text-3xl">$ npm install</p>
-            <p className="text-2xl ml-3">$ npm run dev</p>
-            <p className="text-4xl justify-end flex">$ npm start</p>
-            <p className="text-4xl justify-start flex">{"//Bui Manh Duc"}</p>
+      </section>
+
+      <section className="section-shell" id="about">
+        <div className="section-kicker">01 / {isVn ? "Về tôi" : "About"}</div>
+        <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+          <div><h2 className="section-title">{isVn ? "Kỹ sư phần mềm với tư duy sản phẩm." : "A software engineer with a product mindset."}</h2></div>
+          <div>
+            <p className="text-lg leading-8 text-slate-400">{isVn ? "Tốt nghiệp ngành Kỹ thuật Phần mềm tại Đại học Nguyễn Tất Thành, tôi yêu thích việc kết hợp kỹ thuật vững chắc với thiết kế chỉn chu. Mục tiêu của tôi không chỉ là viết code chạy được, mà là tạo ra trải nghiệm người dùng đáng tin cậy." : "A Software Engineering graduate from Nguyen Tat Thanh University, I enjoy combining solid engineering with thoughtful design. My goal is not just working code, but reliable user experiences."}</p>
+            <Link href="/about" className="mt-7 inline-flex items-center gap-2 font-semibold text-cyan-300 hover:text-cyan-200">{isVn ? "Đọc câu chuyện của tôi" : "Read my story"}<FontAwesomeIcon icon={faArrowRight} /></Link>
           </div>
         </div>
-      </div>
+        <div className="mt-14 grid grid-cols-2 gap-3 lg:grid-cols-4">{stats.map((stat) => <div className="glass-card p-6" key={stat.value}><strong className="block text-3xl text-white sm:text-4xl">{stat.value}</strong><span className="mt-2 block text-sm text-slate-500">{isVn ? stat.vn : stat.en}</span></div>)}</div>
+      </section>
 
-      {/* tab2 */}
-      <div className="lg:mt-20 mt-20 ">
-        <h1 className="lg:text-3xl text-lg font-bold text-[#1465ff] grid grid-cols-2 gap-0 items-center">
-          <span className="uppercase">
-            {currentlang === 'vn' || currentlang === '' ? " Kỹ năng " : "Skill"}
-          </span>
-          <span className="justify-end flex">
-            <a className=" flex" href='/projects'>
-              <span className="bg-[#1465ff] rounded-full p-2 text-white text-lg lg:text-xl font-semibold items-center flex px-4">{currentlang === 'vn' || currentlang === '' ? " Dự án của tôi" : "My Project"}
-                <span className="items-center flex "><FontAwesomeIcon icon={faArrowRight} className='bg-white transition-all delay-150 ease-in-out hover:text-white hover:bg-[#1465ff] ml-2 border rounded-full p-1 text-black' /></span>
-              </span>
-            </a>
-          </span>
-        </h1>
-      </div>
-      <p className="font-extralight text-xl lg:text-2xl justify-center flex text-center py-2 lg:py-6">{currentlang === 'vn' || currentlang === '' ? 'Công nghệ, thư viện, kỹ năng mà tôi sử dụng:' : 'Technologies, libraries, and skills I use:'}</p>
+      <section className="section-shell" id="skills">
+        <div className="section-heading"><div><div className="section-kicker">02 / {isVn ? "Năng lực" : "Expertise"}</div><h2 className="section-title">{isVn ? "Công nghệ tôi sử dụng" : "Tools I work with"}</h2></div><p>{isVn ? "Một bộ công cụ thực dụng để xây dựng sản phẩm từ ý tưởng đến triển khai." : "A pragmatic toolkit for taking products from idea to deployment."}</p></div>
+        <div className="grid gap-5 md:grid-cols-3">{skillGroups.map((group) => <article className="glass-card group p-7" key={group.title}><div className="mb-7 flex h-12 w-12 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-400/10 font-mono text-sm font-bold text-cyan-300 transition group-hover:scale-110">{group.icon}</div><h3 className="text-xl font-semibold text-white">{group.title}</h3><div className="mt-5 space-y-3">{group.skills.map((skill) => <div className="flex items-center gap-3 text-sm text-slate-400" key={skill}><FontAwesomeIcon icon={faCheck} className="text-cyan-400" />{skill}</div>)}</div></article>)}</div>
+      </section>
 
-      <div className="lg:block hidden">
-        <div className="grid grid-cols-6 gap-28 justify-center items-center lg:px-40 mt-2 lg:mt-6">
-          {linkimgskill.slice(0, 6).map((e, index) => (
-            <span key={index}>
-              <img src={e.Link} className="w-20" />
-            </span>
-          ))}
+      <section className="section-shell">
+        <div className="section-heading"><div><div className="section-kicker">03 / {isVn ? "Hành trình" : "Journey"}</div><h2 className="section-title">{isVn ? "Kinh nghiệm & học vấn" : "Experience & education"}</h2></div></div>
+        <div className="timeline mx-auto max-w-4xl space-y-6">
+          <article className="timeline-card glass-card"><div className="timeline-icon"><FontAwesomeIcon icon={faBriefcase} /></div><span>08/2024 — 12/2024</span><h3>Backend Developer Intern</h3><p>NLT Group · ASP.NET Core, C#, SQL Server</p><p>{isVn ? "Phát triển REST API, xử lý dữ liệu và cộng tác trong quy trình xây dựng sản phẩm thực tế." : "Built REST APIs, worked with data and collaborated in a real product workflow."}</p></article>
+          <article className="timeline-card glass-card"><div className="timeline-icon"><FontAwesomeIcon icon={faGraduationCap} /></div><span>2021 — 2025</span><h3>{isVn ? "Kỹ thuật Phần mềm" : "Software Engineering"}</h3><p>{isVn ? "Đại học Nguyễn Tất Thành" : "Nguyen Tat Thanh University"} · GPA 7.31/10</p></article>
         </div>
+      </section>
 
-        <div className="grid grid-cols-5 gap-5 justify-center items-center lg:px-60 mt-12">
-          {linkimgskill.slice(6, 12).map((e, index) => (
-            <span key={index} className="justify-center flex">
-              <img src={e.Link} className="w-20" />
-            </span>
-          ))}
-        </div>
-      </div>
+      <section className="section-shell" id="projects">
+        <div className="section-heading"><div><div className="section-kicker">04 / Portfolio</div><h2 className="section-title">{isVn ? "Dự án nổi bật" : "Featured projects"}</h2></div><Link href="/projects" className="secondary-btn">{isVn ? "Xem tất cả" : "View all"}<FontAwesomeIcon icon={faArrowRight} /></Link></div>
+        <div className="grid gap-6 lg:grid-cols-3">{featuredProjects.map((project, index) => <ProjectCard key={project.id} project={project} isVn={isVn} index={index} />)}</div>
+      </section>
 
-      <div className="lg:hidden block">
-        <div className="grid grid-cols-3 gap-4  justify-center items-center lg:px-40 mt-2 lg:mt-6">
-          {linkimgskill.map((e, index) => (
-            <span key={index} className="justify-center flex">
-              <img src={e.Link} className="w-20" />
-            </span>
-          ))}
+      <section className="mx-auto mb-16 max-w-7xl px-4 sm:px-6">
+        <div className="cta-panel relative overflow-hidden rounded-[2rem] border border-blue-400/20 px-6 py-14 text-center sm:px-12 sm:py-20">
+          <div className="relative z-10"><p className="section-kicker">{isVn ? "Cùng làm việc" : "Let’s work together"}</p><h2 className="mx-auto max-w-3xl text-3xl font-bold tracking-tight text-white sm:text-5xl">{isVn ? "Bạn có một ý tưởng đáng để hiện thực hóa?" : "Have an idea worth bringing to life?"}</h2><p className="mx-auto mt-5 max-w-xl text-slate-400">{isVn ? "Tôi luôn sẵn sàng trao đổi về sản phẩm, cơ hội nghề nghiệp và những bài toán thú vị." : "I’m always open to product conversations, career opportunities and interesting problems."}</p><div className="mt-8 flex flex-wrap justify-center gap-3"><Link href="/contact" className="primary-btn"><FontAwesomeIcon icon={faEnvelope} />{isVn ? "Bắt đầu trò chuyện" : "Start a conversation"}</Link><Link href="/contact" className="secondary-btn"><FontAwesomeIcon icon={faDownload} />{isVn ? "Nhận CV" : "Request CV"}</Link></div></div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

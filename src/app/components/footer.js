@@ -1,76 +1,42 @@
-
 "use client";
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable jsx-a11y/alt-text */
-import { useEffect, useState } from "react";
-export default function FooterPage() {
-  const [currentlang, setCurrentLang] = useState("");
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const curentlangs = localStorage.getItem("lang");
-      setCurrentLang(curentlangs);
-    }
-  }, []);
 
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
+function BrandIcon({ name }) {
+  const paths = {
+    github: "M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.2.8-.5v-2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6a4.7 4.7 0 0 1 1.2-3.1 4.4 4.4 0 0 1 .1-3.1s1-.3 3.1 1.2a10.7 10.7 0 0 1 5.7 0c2.1-1.5 3.1-1.2 3.1-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.5A11.3 11.3 0 0 0 12 .7Z",
+    linkedin: "M20.5 3.5A2.5 2.5 0 1 1 15.5 3.5a2.5 2.5 0 0 1 5 0ZM16 8h4v12h-4V8Zm-12 0h4v12H4V8Zm2-6.5A2.5 2.5 0 1 1 6 6.5a2.5 2.5 0 0 1 0-5ZM11 8h3.8v1.6h.1c.5-1 1.8-2.1 3.7-2.1 4 0 4.7 2.6 4.7 6V20h-4v-5.8c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V20h-4V8Z",
+    facebook: "M14 8.5V6.7c0-.8.5-1 1-1h2.7V2.2L14.6 2C11.5 2 10 3.8 10 6.3v2.2H7V12h3v10h4V12h3.2l.5-3.5H14Z",
+  };
+  return <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true"><path d={paths[name]} /></svg>;
+}
+
+export default function Footer() {
   return (
-    <div className=" bg-white/80 lg:min-h-[00px] mt-60 text-black">
-      <div className="grid grid-cols-1 gap-3 pt-10 container mx-auto">
-        <div className="justify-center grid">
-          <span className="text-5xl lg:text-9xl font-mono text-center">
-            {currentlang === "vn" || currentlang === "" ? (
-              <>
-                Cảm Ơn Đã <br /> Ghé Thăm
-              </>
-            ) : (
-              <>
-                Thank You For <br /> Watching
-              </>
-            )}
-          </span>
-          <div className="grid grid-cols-1 justify-center gap-3 mt-4">
-            <div className="justify-center grid">
-              <p className="uppercase text-lg lg:text-xl font-extralight justify-center grid">
-                Contact
-              </p>
-              <a
-                href="mailto:manhduc132003@gmail.com"
-                className="flex items-center text-lg lg:text-xl text-[#134197] hover:text-[#3c6bc4]"
-              >
-                <span className="mr-2">
-                  <img
-                    src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740724394/4171344_card_day_letter_love_mail_icon_s298wq.png"
-                    className="w-6 lg:w-10"
-                  />
-                </span>
-                manhduc132003@gmail.com
-              </a>
-              <div className="gap-3 grid grid-cols-3 justify-center mt-6">
-                <a href="https://www.facebook.com/bmduc03/" className="justify-center flex">
-                  <img
-                    src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740724715/874b8a0a-0a32-40f2-a7b2-1a5d437e2d6f.png"
-                    className="w-6"
-                  />
-                </a>
-                <a href="https://www.instagram.com/manh_duc_03/" className="justify-center flex">
-                  <img
-                    src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740724793/2e50d851-316d-44ce-9fae-d3d1e54d85eb.png"
-                    className="w-6"
-                  />
-                </a>
-                <a href="https://github.com/Huckdj" className="justify-center flex">
-                  <img
-                    src="https://res.cloudinary.com/dumx42hqq/image/upload/v1740724825/bdec3eac-aad8-49ed-9edc-c7a35d18829b.png"
-                    className="w-6"
-                  />
-                </a>
-              </div>
-            </div>
+    <footer className="border-t border-white/[.07]">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6">
+        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <Link href="/" className="flex items-center gap-3">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 font-mono text-sm font-black text-slate-950">MD</span>
+            <span className="font-semibold text-white">Bùi Mạnh Đức</span>
+          </Link>
+
+          <div className="flex gap-3">
+            <a className="social-link" href="https://github.com/Huckdj" target="_blank" rel="noreferrer" aria-label="GitHub"><BrandIcon name="github" /></a>
+            <a className="social-link" href="https://www.linkedin.com/in/manhduc-huckdj2003/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><BrandIcon name="linkedin" /></a>
+            <a className="social-link" href="mailto:manhduc132003@gmail.com" aria-label="Email"><FontAwesomeIcon icon={faEnvelope} /></a>
+            <a className="social-link" href="https://www.facebook.com/bmduc03/" target="_blank" rel="noreferrer" aria-label="Facebook"><BrandIcon name="facebook" /></a>
+            <button className="social-link" onClick={() => scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><FontAwesomeIcon icon={faArrowUp} /></button>
           </div>
         </div>
+
+        <div className="flex flex-col justify-between gap-2 border-t border-white/[.07] pt-6 text-xs text-slate-600 sm:flex-row">
+          <p>© {new Date().getFullYear()} Bùi Mạnh Đức. All rights reserved.</p>
+          <p>Designed &amp; built with care in Vietnam.</p>
+        </div>
       </div>
-      <div className="bg-black/15 mt-6 text-sm justify-center flex">
-            <p>Portfolio by Mạnh Đức, © 2024 . Code by Nextjs</p>
-      </div>
-    </div>
+    </footer>
   );
 }
