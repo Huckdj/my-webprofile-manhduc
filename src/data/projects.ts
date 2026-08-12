@@ -15,6 +15,38 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    "id": 0,
+    "period": {
+      "vn": "Freelance",
+      "en": "Freelance"
+    },
+    "title": {
+      "vn": "Website Duy Phương Pickleball",
+      "en": "Duy Phương Pickleball Website"
+    },
+    "description": {
+      "vn": "Website thương mại điện tử cho Duy Phương Pickleball, hỗ trợ giới thiệu và kinh doanh các sản phẩm Pickleball với giao diện thân thiện, responsive và hệ thống quản lý dữ liệu.",
+      "en": "E-commerce website for Duy Phương Pickleball, featuring Pickleball products with a user-friendly, responsive interface and data management system."
+    },
+    "tech": [
+      "ReactJS",
+      "NodeJS",
+      "ExpressJS",
+      "MySQL",
+      "cPanel"
+    ],
+    "featured": true,
+    "links": [
+      {
+        "label": {
+          "vn": "Live Demo",
+          "en": "Live Demo"
+        },
+        "url": "https://duyphuongpickleball.vn/"
+      }
+    ]
+  },
+  {
     id: 1,
     period: { vn: "26/09/2024 - 05/01/2025", en: "26/09/2024 - 05/01/2025" },
     title: { vn: "Hệ thống đặt lịch tiêm vaccine", en: "Vaccine Appointment System" },
