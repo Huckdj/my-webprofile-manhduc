@@ -17,7 +17,7 @@ export const projects: Project[] = [
   {
     "id": 0,
     "period": {
-      "vn": "Freelance",
+      "vn": "Freelance 04/2026-06/2026",
       "en": "Freelance"
     },
     "title": {
